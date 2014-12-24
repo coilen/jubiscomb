@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point: 1
+  fc: false
+  player_id: 1
+  detail_id: 1
+
+two:
+  point: 1
+  fc: false
+  player_id: 1
+  detail_id: 1

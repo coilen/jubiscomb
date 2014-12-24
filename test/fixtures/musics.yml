@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mid: 1
+  title: MyString
+  version: MyString
+  event: MyString
+  hold: false
+
+two:
+  mid: 1
+  title: MyString
+  version: MyString
+  event: MyString
+  hold: false

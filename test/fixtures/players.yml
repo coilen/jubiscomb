@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rival_id: MyString
+  name: MyString
+  jubility: 1.5
+
+two:
+  rival_id: MyString
+  name: MyString
+  jubility: 1.5
