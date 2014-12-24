@@ -23,7 +23,7 @@ class Music < ActiveRecord::Base
       html_data.search("#music_data li.type0").each do |music_data|
         music = Music.new
         music.title = music_data.search(".name span").text
-        artist = music_data.search(".name").text.gsub(/(\s*#{music.title}\s*)|\s{2}/, "")
+        music.artist = music_data.search(".name").text.gsub(/(\s*#{music.title}\s*)|\s{2}/, "")
         music.mid = music_data.children[1].attributes["src"].value.scan(/id(\d*)/)[0][0]
         music.save
         music.details.create(diff: 0, level: music_data.search(".level .bsc").text)
