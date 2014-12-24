@@ -1,0 +1,19 @@
+h3 楽曲一覧
+
+table.table.table-bordered
+  tr
+    th rowspan=2 曲名
+    th rowspan=2 アーティスト
+    th colspan=3 Level
+  tr
+    th BASIC
+    th ADVANCED
+    th EXTREME
+  - @musics.each do |music|
+    tr
+      td= music.title
+      td= music.artist
+      td= music.details.find_by(diff: 0).level
+      td= music.details.find_by(diff: 1).level
+      td= music.details.find_by(diff: 2).level
+    
