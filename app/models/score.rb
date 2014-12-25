@@ -32,10 +32,14 @@ class Score < ActiveRecord::Base
       next if Music.find_by(mid: mid).blank?
       bsc_score = Score.new; adv_score = Score.new; ext_score = Score.new
       scores = [bsc_score, adv_score, ext_score]
-      Music.find_by(mid: mid).details.each do |detail|
-        scores[detail.diff].detail_id = detail.id
-        p player
-        scores[detail.diff].player_id = player.id
+      Music.find_by(mid: mid).details.order(:diff).each do |detail|
+        score = Score.find_by(detail_id: detail.id, player_id: player.id)
+        if score.blank?
+          scores[detail.diff].detail_id = detail.id
+          scores[detail.diff].player_id = player.id
+        else
+          scores[detail.diff] = score
+        end
       end
       # 点の取得
       [1, 3, 5].each_with_index do |num, score_index|
