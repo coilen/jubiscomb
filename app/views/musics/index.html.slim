@@ -1,19 +1,43 @@
-h3 楽曲一覧
+form
+  input type="text" name="new_player" size=15
+  input type="submit" value="Submit"
 
-table.table.table-bordered
-  tr
-    th rowspan=2 曲名
-    th rowspan=2 アーティスト
-    th colspan=3 Level
-  tr
-    th BASIC
-    th ADVANCED
-    th EXTREME
-  - @musics.each do |music|
-    tr
-      td= music.title
-      td= music.artist
-      td= music.details.find_by(diff: 0).level
-      td= music.details.find_by(diff: 1).level
-      td= music.details.find_by(diff: 2).level
-    
+= form_tag(musics_path, method: :post) do
+
+  .col-lg-8
+    h3 楽曲選択
+    table.table.table-bordered
+      tr
+        th rowspan=2
+        th rowspan=2 曲名
+        th rowspan=2 アーティスト
+        th colspan=3 Level
+      tr
+        th BASIC
+        th ADVANCED
+        th EXTREME
+      - @musics.each do |music|
+        tr
+          td
+            input type="radio" name="music" value=music.id
+          td= music.title
+          td= music.artist
+          td= music.details.find_by(diff: 0).level
+          td= music.details.find_by(diff: 1).level
+          td= music.details.find_by(diff: 2).level
+
+  .col-lg-4
+    h3 プレイヤ選択
+    table.table.table-bordered
+      tr
+        th
+        th ライバルID
+        th 名前
+      - @players.each do |player|
+          tr
+            td
+              input type="checkbox" name="player[#{player.id}]" value="true"
+            td= player.rival_id
+            td= player.name
+
+    = submit_tag '送信'
